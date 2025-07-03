@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELOSTAZ Salon</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap');
+        
+        :root {
+            --dark-blue: #1a1b41;
+            --deep-purple: #4a148c;
+            --neon-blue: #00f2ff;
+            --neon-purple: #c96fff;
+            --white-color: #f8f9fa;
+            --black-color: #1A1A1A;
+            --accent-color: #0d47a1;
+        }
+        
+        html {
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        *, *:before, *:after {
+            box-sizing: inherit;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: linear-gradient(135deg, var(--dark-blue), var(--deep-purple), var(--accent-color));
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--white-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        body::before {
+            content: "Æ";
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 40vw;
+            opacity: 0.05;
+            z-index: -1;
+            color: var(--neon-blue);
+            pointer-events: none;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: rgba(26, 27, 65, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            border: 2px solid var(--neon-purple);
+        }
+        
+        header {
+            text-align: center;
+            padding: 1.5rem 0;
+            border-bottom: 2px solid var(--neon-purple);
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .logo-circle {
+            width: 7.5rem;
+            height: 7.5rem;
+            border-radius: 50%;
+            margin: 0 auto 1.25rem;
+            overflow: hidden;
+            border: 3px solid var(--neon-blue);
+            box-shadow: 0 0 20px var(--neon-purple);
+            animation: pulse 2s infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* background: #fff;  تم حذف الخلفية البيضاء هنا */
+            background: transparent;
+        }
+        /* خلفية بيضاء للوجو المصمم */
+        #about .logo-circle {
+            background: #fff;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 10px var(--neon-blue); }
+            50% { box-shadow: 0 0 30px var(--neon-purple); }
+            100% { box-shadow: 0 0 10px var(--neon-blue); }
+        }
+        
+        .logo-circle img {
+            width: 85%;
+            height: 85%;
+            object-fit: contain;
+            display: block;
+            margin: auto;
+        }
+        /* صغر لوجو المصمم فقط */
+        #about .logo-circle img {
+            width: 65%;
+            height: 65%;
+        }
+        
+        .logo {
+            font-size: 3rem;
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-purple);
+            margin-bottom: 10px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            color: var(--neon-blue);
+            text-shadow: 0 0 5px var(--neon-blue);
+        }
+        
+        h2 {
+            color: var(--neon-purple);
+            font-size: 1.8rem;
+            margin-top: 2rem;
+            border-right: 3px solid var(--neon-blue);
+            padding-right: 1rem;
+            text-shadow: 0 0 3px var(--neon-purple);
+        }
+        
+        .offer-card {
+            background-color: rgba(26, 27, 65, 0.3);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1.25rem;
+            border: 1px solid var(--neon-purple);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .offer-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(201, 111, 255, 0.5);
+            background-color: rgba(26, 27, 65, 0.5);
+        }
+        
+        .offer-title {
+            font-size: 1.5rem;
+            color: var(--neon-blue);
+            margin-top: 0;
+            border-bottom: 1px dashed var(--neon-purple);
+            padding-bottom: 0.6rem;
+        }
+        
+        .price {
+            font-size: 1.8rem;
+            color: var(--neon-blue);
+            font-weight: bold;
+            text-align: left;
+            margin: 1rem 0;
+        }
+        
+        .price::after {
+            content: " ج.م";
+            font-size: 1.2rem;
+        }
+        
+        .service-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .service-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(201, 111, 255, 0.2);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .service-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .service-name {
+            color: var(--white-color);
+        }
+        
+        .service-price {
+            color: var(--neon-purple);
+            font-weight: bold;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .gallery img {
+            width: 100%;
+            border-radius: 8px;
+            border: 2px solid var(--neon-purple);
+            transition: transform 0.3s;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+        }
+        
+        .gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px var(--neon-blue);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+            color: var(--black-color);
+            padding: 0.75rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 1.25rem 0;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.5);
+            transition: all 0.3s;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(201, 111, 255, 0.8);
+            color: var(--white-color);
+        }
+        
+        .btn:active {
+            transform: translateY(1px);
+        }
+        
+        .contact-info {
+            background-color: rgba(26, 27, 65, 0.3);
+            border-radius: 10px;
+            padding: 1.25rem;
+            margin-top: 2rem;
+            border: 1px solid var(--neon-blue);
+        }
+        
+        .contact-info p {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .contact-info i {
+            margin-left: 0.6rem;
+            color: var(--neon-purple);
+            font-size: 1.2rem;
+            width: 25px;
+            text-align: center;
+        }
+        
+        .contact-info a {
+            color: var(--neon-blue);
+            text-decoration: none;
+            transition: all 0.3s;
+            word-break: break-all;
+        }
+        
+        .contact-info a:hover {
+            text-shadow: 0 0 5px var(--neon-blue);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 1.25rem;
+            border-top: 1px solid var(--neon-purple);
+            font-size: 1.1rem;
+            position: relative;
+        }
+        
+        .signature {
+            font-family: cursive;
+            color: var(--neon-blue);
+            font-size: 1.3rem;
+            margin-top: 0.6rem;
+        }
+        
+        .about-btn {
+            position: absolute;
+            top: 1.25rem;
+            left: 1.25rem;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+            color: var(--black-color);
+            padding: 0.6rem 1.25rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.5);
+            transition: all 0.3s;
+        }
+        
+        .about-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(201, 111, 255, 0.8);
+            color: var(--white-color);
+        }
+        
+        .whatsapp-btn {
+            display: block;
+            margin: 1.25rem auto;
+            max-width: 200px;
+            background: linear-gradient(45deg, #25D366, #128C7E);
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 0 15px rgba(37, 211, 102, 0.5);
+            transition: all 0.3s;
+        }
+        
+        .whatsapp-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.8);
+        }
+        
+        .home-btn {
+            display: block;
+            margin: 1.25rem auto;
+            max-width: 200px;
+            background: linear-gradient(45deg, var(--neon-purple), var(--neon-blue));
+            color: var(--black-color);
+            padding: 0.75rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 0 15px rgba(201, 111, 255, 0.5);
+            transition: all 0.3s;
+        }
+        
+        .home-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0, 242, 255, 0.8);
+            color: var(--white-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .container {
+                max-width: 95vw;
+                padding: 1.5rem;
+            }
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            }
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+                margin: 1rem;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            h2 {
+                font-size: 1.3rem;
+                padding-right: 0.7rem;
+            }
+            .logo {
+                font-size: 2rem;
+            }
+            .logo-circle {
+                width: 5.5rem;
+                height: 5.5rem;
+            }
+            .gallery {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.7rem;
+            }
+            .about-btn {
+                position: static;
+                display: block;
+                margin: 0 auto 1rem;
+                text-align: center;
+            }
+        }
+        @media (max-width: 500px) {
+            .container {
+                padding: 0.5rem;
+                margin: 0.5rem;
+            }
+            h1 {
+                font-size: 1.3rem;
+            }
+            h2 {
+                font-size: 1rem;
+                padding-right: 0.5rem;
+            }
+            .logo {
+                font-size: 1.2rem;
+            }
+            .logo-circle {
+                width: 3.5rem;
+                height: 3.5rem;
+            }
+            .gallery {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+            .btn, .whatsapp-btn, .home-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-circle">
+                <img src="ELOSTAZ Logo1.png" alt="ELOSTAZ Logo">
+            </div>
+            <h1>ELOSTAZ Salon</h1>
+            <p>جودة · أناقة · خبرة أكثر من 30عامًا</p>
+            <a href="#about" class="about-btn">عن المصمم</a>
+        </header>
+        
+        <section>
+            <h2>العروض الخاصة</h2>
+            
+            <div class="offer-card">
+                <h3 class="offer-title">باقة الذهب</h3>
+                <div class="price">100</div>
+                <ul class="service-list">
+                    <li>حلاقة شعر بأحدث الموديلات</li>
+                    <li>تنعيم الذقن بالبخار</li>
+                    <li>قص وتشكيل اللحية</li>
+                    <li>مساج للرأس والرقبة</li>
+                    <li>عطر رجالي مميز</li>
+                </ul>
+                <a href="https://wa.me/201140910047?text=مرحباً، أريد حجز باقة الذهب" class="btn" target="_blank">احجز الآن</a>
+            </div>
+            
+            <div class="offer-card">
+                <h3 class="offer-title">باقة الفضة</h3>
+                <div class="price">70</div>
+                <ul class="service-list">
+                    <li>حلاقة شعر كلاسيكية</li>
+                    <li>تنعيم الذقن</li>
+                    <li>تشذيب اللحية</li>
+                    <li>عطر رجالي</li>
+                </ul>
+                <a href="https://wa.me/201140910047?text=مرحباً، أريد حجز باقة الفضة" class="btn" target="_blank">احجز الآن</a>
+            </div>
+            
+            <div class="offer-card">
+                <h3 class="offer-title">عروض الطلاب</h3>
+                <div class="price">50</div>
+                <ul class="service-list">
+                    <li>حلاقة شعر بسيطة</li>
+                    <li>تشذيب الذقن</li>
+                    <li>غسيل الوجه</li>
+                </ul>
+                <p style="color: var(--neon-blue); font-weight: bold;">*عرض خاص للطلاب فقط بموجب بطاقة الجامعة</p>
+                <a href="https://wa.me/201140910047?text=مرحباً، أريد حجز عرض الطلاب" class="btn" target="_blank">احجز الآن</a>
+            </div>
+        </section>
+        
+        <section>
+            <h2>قائمة الخدمات والأسعار</h2>
+            
+            <ul class="service-list">
+                <li>
+                    <span class="service-name">حلاقة شعر بأحدث الموديلات</span>
+                    <span class="service-price">50 ج.م</span>
+                </li>
+                <li>
+                    <span class="service-name">حلاقة شعر كلاسيكية</span>
+                    <span class="service-price">60 ج.م</span>
+                </li>
+                <li>
+                    <span class="service-name">قص وتشكيل اللحية</span>
+                    <span class="service-price">30 ج.م</span>
+                </li>
+                <li>
+                    <span class="service-name">حلاقة الذقن بالماكينة</span>
+                    <span class="service-price">20 ج.م</span>
+                </li>
+                <li>
+                    <span class="service-name">تنعيم الذقن بالبخار</span>
+                    <span class="service-price">30ج.م</span>
+                </li>
+                <li>
+                    <span class="service-name">صبغة شعر</span>
+                    <span class="service-price">30 ج.م</span>
+                </li>
+                <li>
+                    <span class="service-name">صبغة لحية</span>
+                    <span class="service-price">30 ج.م</span>
+                </li>
+                <li>
+                    <span class="service-name">مساج الرأس والرقبة</span>
+                    <span class="service-price">30 ج.م</span>
+                </li>
+            </ul>
+        </section>
+        
+        <section>
+            <h2>معرض أعمالنا</h2>
+            <div class="gallery">
+                <img src="client-doing-hair-cut-barber-shop-salon.jpg" alt="client-doing-hair-cut-barber-shop-salon">
+                <img src="young-man-barbershop-trimming-hair.jpg" alt="young-man-barbershop-trimming-hair 1">
+                <img src="elostaz22.jpg" alt="elostaz22">
+                <img src="elostaz4.jpg" alt="elostaz4">
+            </div>
+        </section>
+        
+        <section class="contact-info">
+            <h2>اتصل بنا</h2>
+            <p>
+                <i class="fas fa-map-marker-alt"></i> 
+                العنوان: <a href="https://maps.google.com?q=ش+محمود+محروس+متفرع+من+احمد+عرابي+عين+شمس+الشرقيه" target="_blank">ش محمود محروس متفرع من احمد عرابي عين شمس الشرقيه</a>
+            </p>
+            <p>
+                <i class="fas fa-phone"></i> 
+                الهاتف: <a href="tel:01140910047">01140910047</a>
+            </p>
+            <p><i class="fas fa-clock"></i> أوقات العمل: يوميًا من 1 ظهرا  إلى 2 صباحاً</p>
+            <p><i class="fas fa-calendar-alt"></i> العطلة الأسبوعية:يوم الاثنين</p>
+        </section>
+        
+        <footer>
+            <p>صالون ELOSTAZ - جميع الحقوق محفوظة &copy; 2025</p>
+            <div class="signature">
+                <span>من تصميم Æ</span><br>
+                <span>إدارة: Ebrahem Rabea</span>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- About Designer Page -->
+    <div id="about" class="container" style="display: none;">
+        <header>
+            <div class="logo-circle">
+                <img src="Logo AE.png" alt="Designer Logo">
+            </div>
+            <h1>عن المصمم</h1>
+            <a href="#" class="home-btn">العودة للصفحة الرئيسية</a>
+        </header>
+        
+        <section>
+            <h2>الخبرات والمهارات</h2>
+            <div class="offer-card">
+                <h3 class="offer-title">أخصائي تكنولوجيا التعليم</h3>
+                <p>متخصص في تطوير حلول تعليمية مبتكرة باستخدام أحدث التقنيات التكنولوجية.</p>
+            </div>
+            
+            <div class="offer-card">
+                <h3 class="offer-title">جرافيك ديزاينر</h3>
+                <p>تصميم شعارات، هويات بصرية، مواد تسويقية، وإنفوجرافيك بجودة عالية.</p>
+            </div>
+            
+            <div class="offer-card">
+                <h3 class="offer-title">مطور صفحات الويب</h3>
+                <p>تصميم وتطوير مواقع الويب بتقنيات حديثة وجذابة تلبي احتياجات العملاء.</p>
+            </div>
+            
+            <a href="https://wa.me/201551706847" class="whatsapp-btn" target="_blank"><i class="fab fa-whatsapp"></i> تواصل مع المصمم</a>
+            <a href="#" class="home-btn">العودة للصفحة الرئيسية</a>
+        </section>
+        
+        <footer>
+            <p>جميع الحقوق محفوظة &copy; 2025</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Toggle between main and about pages
+        document.querySelector('.about-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector('.container').style.display = 'none';
+            document.querySelector('#about').style.display = 'block';
+        });
+        
+        document.querySelectorAll('.home-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector('.container').style.display = 'block';
+                document.querySelector('#about').style.display = 'none';
+                window.scrollTo(0, 0);
+            });
+        });
+    </script>
+</body>
+</html>
