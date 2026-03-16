@@ -9,10 +9,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&family=Cinzel:wght@400;700;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
   <style>
-     :root {
+    /* ============================================================
+       متغيرات الثيمات
+    ============================================================ */
+    :root {
       --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     }
+
     [data-theme="dark"] {
       --bg-primary:     #080810;
       --bg-secondary:   #0F0F1C;
@@ -33,6 +38,7 @@
       --navbar-bg:      rgba(8,8,16,0.88);
       --toggler-icon:   "☀️";
     }
+
     [data-theme="light"] {
       --bg-primary:     #F8F4EE;
       --bg-secondary:   #EEE8DA;
@@ -52,11 +58,17 @@
       --shadow-gold:    0 0 25px rgba(139,105,20,0.15);
       --navbar-bg:      rgba(248,244,238,0.92);
     }
+
+    /* ============================================================
+       ريست وأساسيات
+    ============================================================ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     html {
       scroll-behavior: smooth;
       font-size: 16px;
     }
+
     body {
       font-family: 'Tajawal', sans-serif;
       background-color: var(--bg-primary);
@@ -65,6 +77,10 @@
       transition: background-color var(--transition), color var(--transition);
       overflow-x: hidden;
     }
+
+    /* ============================================================
+       خلفية الأدوات المتحركة
+    ============================================================ */
     .bg-floating {
       position: fixed;
       inset: 0;
@@ -72,6 +88,7 @@
       z-index: 0;
       overflow: hidden;
     }
+
     .bg-floating span {
       position: absolute;
       font-size: 2.5rem;
@@ -79,7 +96,9 @@
       animation: floatTool linear infinite;
       filter: grayscale(1);
     }
+
     [data-theme="light"] .bg-floating span { opacity: 0.06; }
+
     .bg-floating span:nth-child(1)  { top: 5%;   right: 8%;   animation-duration: 22s; animation-delay: 0s;   font-size: 2rem;   }
     .bg-floating span:nth-child(2)  { top: 20%;  left: 5%;    animation-duration: 28s; animation-delay: -6s;  font-size: 3rem;   }
     .bg-floating span:nth-child(3)  { top: 40%;  right: 15%;  animation-duration: 19s; animation-delay: -3s;  font-size: 2.2rem; }
@@ -90,12 +109,15 @@
     .bg-floating span:nth-child(8)  { top: 50%;  right: 40%;  animation-duration: 17s; animation-delay: -12s; font-size: 2rem;   }
     .bg-floating span:nth-child(9)  { top: 30%;  left: 55%;   animation-duration: 35s; animation-delay: -2s;  font-size: 1.5rem; }
     .bg-floating span:nth-child(10) { top: 92%;  right: 30%;  animation-duration: 22s; animation-delay: -18s; font-size: 2.5rem; }
+
     @keyframes floatTool {
       0%   { transform: translateY(0)   rotate(0deg)   scale(1);   }
       33%  { transform: translateY(-30px) rotate(15deg) scale(1.05); }
       66%  { transform: translateY(15px)  rotate(-10deg) scale(0.95); }
       100% { transform: translateY(0)   rotate(0deg)   scale(1);   }
     }
+
+    /* كلمة الأستاذ في الخلفية */
     .bg-ae {
       position: fixed;
       top: 50%;
@@ -113,10 +135,15 @@
       letter-spacing: 0.05em;
       animation: aePulse 8s ease-in-out infinite;
     }
+
     @keyframes aePulse {
       0%,100% { opacity: 0.025; }
       50%      { opacity: 0.045; }
-    
+    }
+
+    /* ============================================================
+       الـ Navbar
+    ============================================================ */
     #navbar {
       position: fixed;
       top: 0;
@@ -129,9 +156,11 @@
       border-bottom: 1px solid var(--border);
       transition: background var(--transition), box-shadow var(--transition);
     }
+
     #navbar.scrolled {
       box-shadow: 0 4px 30px rgba(0,0,0,0.35);
     }
+
     .nav-inner {
       max-width: 1100px;
       margin: 0 auto;
@@ -142,12 +171,14 @@
       justify-content: space-between;
       gap: 1rem;
     }
+
     .nav-brand {
       display: flex;
       align-items: center;
       gap: 0.7rem;
       text-decoration: none;
     }
+
     .nav-logo-img {
       width: 42px;
       height: 42px;
@@ -158,7 +189,9 @@
       padding: 3px;
       transition: box-shadow var(--transition);
     }
+
     .nav-logo-img:hover { box-shadow: 0 0 18px var(--gold); }
+
     .nav-brand-text {
       font-family: 'Cinzel', serif;
       font-size: 1.05rem;
@@ -167,6 +200,7 @@
       line-height: 1.2;
       letter-spacing: 0.05em;
     }
+
     .nav-brand-sub {
       font-family: 'Tajawal', sans-serif;
       font-size: 0.7rem;
@@ -175,12 +209,14 @@
       font-weight: 400;
       letter-spacing: 0;
     }
+
     .nav-links {
       display: flex;
       align-items: center;
       gap: 0.2rem;
       list-style: none;
     }
+
     .nav-links a {
       display: block;
       padding: 0.4rem 0.75rem;
@@ -192,6 +228,7 @@
       transition: all var(--transition);
       position: relative;
     }
+
     .nav-links a::after {
       content: '';
       position: absolute;
@@ -203,8 +240,10 @@
       border-radius: 2px;
       transition: all var(--transition);
     }
+
     .nav-links a:hover { color: var(--gold); }
     .nav-links a:hover::after { right: 12px; left: 12px; }
+
     .nav-links .btn-about {
       background: linear-gradient(135deg, var(--gold), var(--gold-light));
       color: #fff !important;
@@ -212,13 +251,17 @@
       font-weight: 700;
       border-radius: 25px;
     }
+
     .nav-links .btn-about::after { display: none; }
     .nav-links .btn-about:hover { transform: translateY(-2px); box-shadow: var(--shadow-gold); }
+
     .nav-controls {
       display: flex;
       align-items: center;
       gap: 0.6rem;
     }
+
+    /* زر تبديل الثيم */
     #theme-toggle {
       width: 46px;
       height: 26px;
@@ -230,6 +273,7 @@
       transition: background var(--transition);
       flex-shrink: 0;
     }
+
     #theme-toggle::before {
       content: '';
       position: absolute;
@@ -242,9 +286,11 @@
       transition: transform var(--transition);
       box-shadow: 0 2px 6px rgba(0,0,0,0.3);
     }
+
     [data-theme="light"] #theme-toggle::before {
       transform: translateX(-20px);
     }
+
     #theme-toggle .icon-moon,
     #theme-toggle .icon-sun { display: none; }
 
@@ -253,6 +299,8 @@
       color: var(--text-muted);
       cursor: pointer;
     }
+
+    /* هامبرغر موبايل */
     .hamburger {
       display: none;
       flex-direction: column;
@@ -262,6 +310,7 @@
       cursor: pointer;
       padding: 4px;
     }
+
     .hamburger span {
       display: block;
       width: 24px;
@@ -270,12 +319,20 @@
       border-radius: 2px;
       transition: all 0.3s;
     }
+
     .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
     .hamburger.open span:nth-child(2) { opacity: 0; }
     .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
+    /* ============================================================
+       الـ Layout الرئيسي
+    ============================================================ */
     .page { position: relative; z-index: 1; }
     .page.hidden { display: none; }
+
+    /* ============================================================
+       Hero Section
+    ============================================================ */
     #hero {
       min-height: 100svh;
       display: flex;
@@ -286,6 +343,7 @@
       padding: 100px 1.5rem 4rem;
       position: relative;
     }
+
     .hero-badge {
       display: inline-flex;
       align-items: center;
@@ -299,6 +357,7 @@
       margin-bottom: 1.5rem;
       animation: fadeSlideDown 0.6s ease both;
     }
+
     .hero-badge .dot {
       width: 7px;
       height: 7px;
@@ -306,10 +365,12 @@
       background: #22c55e;
       animation: blink 1.5s ease infinite;
     }
+
     @keyframes blink {
       0%,100% { opacity: 1; }
       50%      { opacity: 0.3; }
     }
+
     .hero-logo {
       width: 120px;
       height: 120px;
@@ -322,6 +383,7 @@
       margin-bottom: 1.5rem;
       animation: fadeSlideDown 0.7s 0.1s ease both;
     }
+
     .hero-title {
       font-family: 'Cinzel', serif;
       font-size: clamp(2.2rem, 7vw, 5rem);
@@ -333,19 +395,23 @@
       animation: fadeSlideDown 0.7s 0.2s ease both;
       text-shadow: 0 0 40px rgba(200,169,110,0.3);
     }
+
     .hero-subtitle {
       font-size: clamp(1rem, 3vw, 1.3rem);
       color: var(--text-secondary);
       margin-bottom: 0.5rem;
       animation: fadeSlideDown 0.7s 0.3s ease both;
     }
+
     .hero-tagline {
       font-size: clamp(0.85rem, 2.5vw, 1rem);
       color: var(--text-muted);
       margin-bottom: 2.5rem;
       animation: fadeSlideDown 0.7s 0.4s ease both;
     }
+
     .hero-tagline strong { color: var(--gold); }
+
     .hero-cta {
       display: flex;
       flex-wrap: wrap;
@@ -353,6 +419,7 @@
       justify-content: center;
       animation: fadeSlideDown 0.7s 0.5s ease both;
     }
+
     .hero-stats {
       display: flex;
       gap: 2rem;
@@ -361,9 +428,11 @@
       margin-top: 3rem;
       animation: fadeSlideDown 0.7s 0.6s ease both;
     }
+
     .stat {
       text-align: center;
     }
+
     .stat-num {
       font-family: 'Cinzel', serif;
       font-size: 2rem;
@@ -371,16 +440,19 @@
       color: var(--gold);
       line-height: 1;
     }
+
     .stat-label {
       font-size: 0.8rem;
       color: var(--text-muted);
       margin-top: 0.25rem;
     }
+
     .stat-divider {
       width: 1px;
       background: var(--border);
       align-self: stretch;
     }
+
     .scroll-indicator {
       position: absolute;
       bottom: 2rem;
@@ -394,19 +466,26 @@
       gap: 0.4rem;
       animation: bounce 2s ease infinite;
     }
+
     @keyframes bounce {
       0%,100% { transform: translateX(-50%) translateY(0); }
       50%      { transform: translateX(-50%) translateY(8px); }
     }
+
+    /* ============================================================
+       عناصر مشتركة
+    ============================================================ */
     .section {
       max-width: 1100px;
       margin: 0 auto;
       padding: 5rem 1.5rem;
     }
+
     .section-header {
       text-align: center;
       margin-bottom: 3rem;
     }
+
     .section-tag {
       display: inline-block;
       font-size: 0.75rem;
@@ -420,19 +499,23 @@
       border-radius: 25px;
       margin-bottom: 0.8rem;
     }
+
     .section-title {
       font-size: clamp(1.6rem, 4vw, 2.5rem);
       font-weight: 900;
       color: var(--text-primary);
       margin-bottom: 0.6rem;
     }
+
     .section-title span { color: var(--gold); }
+
     .section-desc {
       color: var(--text-secondary);
       max-width: 500px;
       margin: 0 auto;
       font-size: 0.95rem;
     }
+
     .divider {
       width: 60px;
       height: 3px;
@@ -440,6 +523,10 @@
       border-radius: 3px;
       margin: 0.8rem auto 0;
     }
+
+    /* ============================================================
+       الأزرار
+    ============================================================ */
     .btn-primary {
       display: inline-flex;
       align-items: center;
@@ -457,10 +544,12 @@
       transition: all var(--transition);
       box-shadow: 0 4px 20px rgba(200,169,110,0.3);
     }
+
     .btn-primary:hover {
       transform: translateY(-3px);
       box-shadow: 0 8px 30px rgba(200,169,110,0.5);
     }
+
     .btn-outline {
       display: inline-flex;
       align-items: center;
@@ -477,10 +566,12 @@
       text-decoration: none;
       transition: all var(--transition);
     }
+
     .btn-outline:hover {
       background: var(--gold-dim);
       transform: translateY(-3px);
     }
+
     .btn-whatsapp {
       display: inline-flex;
       align-items: center;
@@ -498,19 +589,26 @@
       transition: all var(--transition);
       box-shadow: 0 4px 20px rgba(37,211,102,0.3);
     }
+
     .btn-whatsapp:hover {
       transform: translateY(-3px);
       box-shadow: 0 8px 30px rgba(37,211,102,0.5);
     }
+
+    /* ============================================================
+       قسم الخدمات والأسعار
+    ============================================================ */
     #services {
       background: var(--bg-secondary);
       position: relative;
     }
+
     .prices-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 1rem;
     }
+
     .price-item {
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -524,6 +622,7 @@
       position: relative;
       overflow: hidden;
     }
+
     .price-item::before {
       content: '';
       position: absolute;
@@ -534,22 +633,27 @@
       background: linear-gradient(180deg, var(--gold), var(--gold-light));
       border-radius: 0 0 0 4px;
     }
+
     .price-item:hover {
       border-color: var(--border-strong);
       transform: translateY(-3px);
       box-shadow: var(--shadow-gold);
       background: var(--bg-card-hover);
     }
+
     .price-item-icon {
       font-size: 1.5rem;
       flex-shrink: 0;
     }
+
     .price-item-info { flex: 1; }
+
     .price-item-name {
       font-weight: 700;
       font-size: 0.97rem;
       color: var(--text-primary);
     }
+
     .price-item-cost {
       font-family: 'Cinzel', serif;
       font-size: 1.2rem;
@@ -558,17 +662,23 @@
       flex-shrink: 0;
       white-space: nowrap;
     }
+
     .price-item-cost span {
       font-family: 'Tajawal', sans-serif;
       font-size: 0.8rem;
       color: var(--text-muted);
       font-weight: 400;
     }
+
+    /* ============================================================
+       قسم العروض
+    ============================================================ */
     .offers-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 1.5rem;
     }
+
     .offer-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -578,6 +688,7 @@
       position: relative;
       overflow: hidden;
     }
+
     .offer-card::after {
       content: '';
       position: absolute;
@@ -587,16 +698,20 @@
       opacity: 0;
       transition: opacity var(--transition);
     }
+
     .offer-card:hover {
       border-color: var(--border-strong);
       transform: translateY(-5px);
       box-shadow: var(--shadow-gold);
     }
+
     .offer-card:hover::after { opacity: 1; }
+
     .offer-card.featured {
       border-color: var(--gold);
       box-shadow: var(--shadow-gold);
     }
+
     .offer-badge {
       position: absolute;
       top: 1.2rem;
@@ -609,16 +724,19 @@
       border-radius: 20px;
       letter-spacing: 0.05em;
     }
+
     .offer-icon {
       font-size: 2.5rem;
       margin-bottom: 1rem;
     }
+
     .offer-title {
       font-size: 1.3rem;
       font-weight: 900;
       color: var(--gold);
       margin-bottom: 1rem;
     }
+
     .offer-price {
       font-family: 'Cinzel', serif;
       font-size: 2.2rem;
@@ -627,16 +745,19 @@
       margin-bottom: 1.2rem;
       line-height: 1;
     }
+
     .offer-price small {
       font-family: 'Tajawal', sans-serif;
       font-size: 0.9rem;
       color: var(--text-muted);
       font-weight: 400;
     }
+
     .offer-features {
       list-style: none;
       margin-bottom: 1.5rem;
     }
+
     .offer-features li {
       padding: 0.45rem 0;
       font-size: 0.9rem;
@@ -646,18 +767,26 @@
       gap: 0.6rem;
       border-bottom: 1px solid var(--border);
     }
+
     .offer-features li:last-child { border-bottom: none; }
+
     .offer-features li i {
       color: var(--gold);
       font-size: 0.75rem;
       flex-shrink: 0;
     }
+
+    /* ============================================================
+       معرض الأعمال
+    ============================================================ */
     #gallery { background: var(--bg-secondary); }
+
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
       gap: 1rem;
     }
+
     .gallery-item {
       border-radius: 14px;
       overflow: hidden;
@@ -666,18 +795,22 @@
       position: relative;
       transition: all var(--transition);
     }
+
     .gallery-item:hover {
       transform: scale(1.02);
       border-color: var(--gold);
       box-shadow: var(--shadow-gold);
     }
+
     .gallery-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       transition: transform var(--transition);
     }
+
     .gallery-item:hover img { transform: scale(1.08); }
+
     .gallery-item-overlay {
       position: absolute;
       inset: 0;
@@ -688,18 +821,25 @@
       align-items: flex-end;
       padding: 1rem;
     }
+
     .gallery-item:hover .gallery-item-overlay { opacity: 1; }
+
     .gallery-item-overlay span {
       color: #fff;
       font-size: 0.85rem;
       font-weight: 700;
     }
+
+    /* ============================================================
+       اتصل بنا
+    ============================================================ */
     .contact-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 2rem;
       align-items: start;
     }
+
     .contact-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -707,10 +847,12 @@
       padding: 2rem;
       transition: all var(--transition);
     }
+
     .contact-card:hover {
       border-color: var(--border-strong);
       box-shadow: var(--shadow-gold);
     }
+
     .contact-item {
       display: flex;
       align-items: flex-start;
@@ -718,7 +860,9 @@
       padding: 1rem 0;
       border-bottom: 1px solid var(--border);
     }
+
     .contact-item:last-child { border-bottom: none; }
+
     .contact-icon {
       width: 40px;
       height: 40px;
@@ -732,28 +876,34 @@
       font-size: 1rem;
       flex-shrink: 0;
     }
+
     .contact-label {
       font-size: 0.75rem;
       color: var(--text-muted);
       margin-bottom: 0.2rem;
     }
+
     .contact-value {
       font-weight: 700;
       color: var(--text-primary);
       font-size: 0.95rem;
     }
+
     .contact-value a {
       color: var(--gold);
       text-decoration: none;
       transition: color var(--transition);
     }
+
     .contact-value a:hover { color: var(--gold-light); }
+
     .map-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 20px;
       overflow: hidden;
     }
+
     .map-placeholder {
       aspect-ratio: 4/3;
       display: flex;
@@ -766,20 +916,27 @@
       transition: all var(--transition);
       text-decoration: none;
     }
+
     .map-placeholder:hover { background: var(--gold-dim); }
 
     .map-placeholder i { font-size: 3rem; color: var(--gold); }
     .map-placeholder span { color: var(--text-secondary); font-size: 0.9rem; }
+
+    /* ============================================================
+       الفوتر
+    ============================================================ */
     footer {
       background: var(--bg-secondary);
       border-top: 1px solid var(--border);
       padding: 2.5rem 1.5rem;
       text-align: center;
     }
+
     .footer-inner {
       max-width: 1100px;
       margin: 0 auto;
     }
+
     .footer-logo {
       font-family: 'Cinzel', serif;
       font-size: 1.5rem;
@@ -787,31 +944,41 @@
       color: var(--gold);
       margin-bottom: 0.5rem;
     }
+
     .footer-desc {
       color: var(--text-muted);
       font-size: 0.85rem;
       margin-bottom: 1.5rem;
     }
+
     .footer-copy {
       color: var(--text-muted);
       font-size: 0.8rem;
       margin-top: 1rem;
     }
+
     .footer-sig {
       margin-top: 0.5rem;
       color: var(--text-muted);
       font-size: 0.85rem;
     }
+
     .footer-sig a {
       color: var(--gold);
       text-decoration: none;
       font-weight: 700;
       transition: color var(--transition);
     }
+
     .footer-sig a:hover { color: var(--gold-light); }
-      #about-page {
+
+    /* ============================================================
+       صفحة من نحن (About Page)
+    ============================================================ */
+    #about-page {
       display: none;
     }
+
     .about-hero {
       min-height: 50svh;
       display: flex;
@@ -821,10 +988,12 @@
       text-align: center;
       padding: 120px 1.5rem 4rem;
     }
+
     .dev-photo-wrap {
       position: relative;
       margin-bottom: 1.5rem;
     }
+
     .dev-photo {
       width: 130px;
       height: 130px;
@@ -833,6 +1002,7 @@
       border: 3px solid var(--gold);
       box-shadow: 0 0 0 8px var(--gold-dim), var(--shadow-gold);
     }
+
     .dev-photo-fallback {
       width: 130px;
       height: 130px;
@@ -848,6 +1018,7 @@
       color: var(--gold);
       font-weight: 900;
     }
+
     .dev-badge {
       position: absolute;
       bottom: 5px;
@@ -863,17 +1034,20 @@
       font-size: 0.75rem;
       border: 2px solid var(--bg-primary);
     }
+
     .dev-name {
       font-size: clamp(1.6rem, 4vw, 2.2rem);
       font-weight: 900;
       color: var(--text-primary);
       margin-bottom: 0.3rem;
     }
+
     .dev-role {
       color: var(--gold);
       font-weight: 700;
       margin-bottom: 0.5rem;
     }
+
     .dev-bio {
       color: var(--text-secondary);
       max-width: 550px;
@@ -881,16 +1055,19 @@
       font-size: 0.95rem;
       line-height: 1.8;
     }
+
     .about-section {
       max-width: 1100px;
       margin: 0 auto;
       padding: 3rem 1.5rem;
     }
+
     .skills-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       gap: 1rem;
     }
+
     .skill-chip {
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -901,11 +1078,13 @@
       gap: 0.75rem;
       transition: all var(--transition);
     }
+
     .skill-chip:hover {
       border-color: var(--border-strong);
       transform: translateY(-2px);
       box-shadow: var(--shadow-gold);
     }
+
     .skill-chip-icon {
       width: 36px;
       height: 36px;
@@ -920,15 +1099,18 @@
       flex-shrink: 0;
       font-weight: 700;
     }
+
     .skill-chip-name {
       font-weight: 700;
       font-size: 0.9rem;
       color: var(--text-primary);
     }
+
     .skill-chip-level {
       font-size: 0.75rem;
       color: var(--text-muted);
     }
+
     .quote-box {
       background: var(--gold-dim);
       border: 1px solid var(--border-strong);
@@ -937,6 +1119,7 @@
       text-align: center;
       position: relative;
     }
+
     .quote-box::before {
       content: '"';
       position: absolute;
@@ -948,31 +1131,43 @@
       font-family: 'Cinzel', serif;
       line-height: 1;
     }
+
     .quote-text {
       font-size: 1rem;
       color: var(--text-secondary);
       line-height: 1.9;
       font-style: italic;
     }
+
     .quote-author {
       margin-top: 1rem;
       color: var(--gold);
       font-weight: 700;
       font-size: 0.9rem;
     }
+
+    /* ============================================================
+       الأنيميشن
+    ============================================================ */
     @keyframes fadeSlideDown {
       from { opacity: 0; transform: translateY(-20px); }
       to   { opacity: 1; transform: translateY(0); }
     }
+
     .fade-in {
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
+
     .fade-in.visible {
       opacity: 1;
       transform: translateY(0);
     }
+
+    /* ============================================================
+       Scroll To Top
+    ============================================================ */
     #scroll-top {
       position: fixed;
       bottom: 2rem;
@@ -994,15 +1189,21 @@
       transition: all var(--transition);
       z-index: 999;
     }
+
     #scroll-top.visible {
       opacity: 1;
       transform: translateY(0);
     }
+
     #scroll-top:hover { transform: translateY(-3px); }
 
+    /* ============================================================
+       الريسبونسف
+    ============================================================ */
     @media (max-width: 900px) {
       .contact-grid { grid-template-columns: 1fr; }
     }
+
     @media (max-width: 768px) {
       .nav-links {
         position: fixed;
@@ -1021,30 +1222,41 @@
         pointer-events: none;
         transition: all 0.35s ease;
       }
+
       .nav-links.open {
         transform: translateY(0);
         opacity: 1;
         pointer-events: all;
       }
+
       .nav-links li { width: 100%; }
       .nav-links a { width: 100%; text-align: center; padding: 0.75rem; }
+
       .hamburger { display: flex; }
+
       .offers-grid { grid-template-columns: 1fr; }
       .gallery-grid { grid-template-columns: 1fr 1fr; }
       .skills-grid  { grid-template-columns: 1fr 1fr; }
+
       .hero-stats { gap: 1rem; }
       .stat-divider { display: none; }
+
       .section { padding: 3.5rem 1.2rem; }
     }
+
     @media (max-width: 480px) {
       .gallery-grid  { grid-template-columns: 1fr; }
       .skills-grid   { grid-template-columns: 1fr; }
       .prices-grid   { grid-template-columns: 1fr; }
+
       .nav-brand-text { font-size: 0.9rem; }
     }
   </style>
 </head>
+
 <body>
+
+  <!-- خلفية الأدوات المتحركة -->
   <div class="bg-floating" aria-hidden="true">
     <span>✂️</span>
     <span>🪒</span>
@@ -1057,12 +1269,20 @@
     <span>💈</span>
     <span>✂️</span>
   </div>
+
   <div class="bg-ae" aria-hidden="true">الأستاذ</div>
+
+  <!-- زر السكرول للأعلى -->
   <button id="scroll-top" aria-label="العودة للأعلى">
     <i class="fas fa-arrow-up"></i>
   </button>
+
+  <!-- ============================================================
+       الـ Navbar
+  ============================================================ -->
   <nav id="navbar" role="navigation" aria-label="القائمة الرئيسية">
     <div class="nav-inner">
+      <!-- البراند -->
       <a href="#hero" class="nav-brand" onclick="showMainPage()">
         <img src="images/ELOSTAZ Logo1.png" alt="شعار كوافير الأستاذ" class="nav-logo-img" />
         <div class="nav-brand-text">
@@ -1070,6 +1290,8 @@
           <span class="nav-brand-sub">كوافير الأستاذ</span>
         </div>
       </a>
+
+      <!-- روابط الناف -->
       <ul class="nav-links" id="nav-links">
         <li><a href="#hero"     onclick="closeMenu(); showMainPage()">الرئيسية</a></li>
         <li><a href="#services" onclick="closeMenu(); showMainPage()">الخدمات</a></li>
@@ -1078,16 +1300,27 @@
         <li><a href="#contact"  onclick="closeMenu(); showMainPage()">اتصل بنا</a></li>
         <li><a href="about.html" class="btn-about">من نحن</a></li>
       </ul>
+
+      <!-- عناصر التحكم -->
       <div class="nav-controls">
+        <!-- تبديل الثيم -->
         <span class="theme-label" id="theme-label">🌙</span>
         <button id="theme-toggle" aria-label="تبديل الثيم" onclick="toggleTheme()"></button>
+
+        <!-- هامبرغر -->
         <button class="hamburger" id="hamburger" aria-label="فتح القائمة" onclick="toggleMenu()">
           <span></span><span></span><span></span>
         </button>
       </div>
     </div>
   </nav>
+
+  <!-- ============================================================
+       الصفحة الرئيسية
+  ============================================================ -->
   <main id="main-page" class="page">
+
+    <!-- Hero -->
     <section id="hero">
       <div class="hero-badge">
         <span class="dot"></span>
@@ -1128,6 +1361,8 @@
         <span>اكتشف المزيد</span>
       </div>
     </section>
+
+    <!-- الخدمات والأسعار -->
     <section id="services">
       <div class="section fade-in">
         <div class="section-header">
@@ -1136,6 +1371,7 @@
           <p class="section-desc">أسعار واضحة وبدون مفاجآت — جودة عالية في متناول الجميع</p>
           <div class="divider"></div>
         </div>
+
         <div class="prices-grid">
           <div class="price-item fade-in">
             <span class="price-item-icon">✂️</span>
@@ -1144,6 +1380,7 @@
             </div>
             <div class="price-item-cost">60 <span>ج.م</span></div>
           </div>
+
           <div class="price-item fade-in">
             <span class="price-item-icon">🪒</span>
             <div class="price-item-info">
@@ -1151,6 +1388,7 @@
             </div>
             <div class="price-item-cost">30 <span>ج.م</span></div>
           </div>
+
           <div class="price-item fade-in">
             <span class="price-item-icon">✂️</span>
             <div class="price-item-info">
@@ -1158,6 +1396,7 @@
             </div>
             <div class="price-item-cost">80 <span>ج.م</span></div>
           </div>
+
           <div class="price-item fade-in">
             <span class="price-item-icon">💆</span>
             <div class="price-item-info">
@@ -1165,6 +1404,7 @@
             </div>
             <div class="price-item-cost">120 <span>ج.م</span></div>
           </div>
+
           <div class="price-item fade-in">
             <span class="price-item-icon">✨</span>
             <div class="price-item-info">
@@ -1172,6 +1412,7 @@
             </div>
             <div class="price-item-cost">90 <span>ج.م</span></div>
           </div>
+
           <div class="price-item fade-in">
             <span class="price-item-icon">💈</span>
             <div class="price-item-info">
@@ -1179,6 +1420,7 @@
             </div>
             <div class="price-item-cost">100 <span>ج.م</span></div>
           </div>
+
           <div class="price-item fade-in">
             <span class="price-item-icon">🪒</span>
             <div class="price-item-info">
@@ -1186,6 +1428,7 @@
             </div>
             <div class="price-item-cost">30 <span>ج.م</span></div>
           </div>
+
           <div class="price-item fade-in">
             <span class="price-item-icon">🌡️</span>
             <div class="price-item-info">
@@ -1193,6 +1436,7 @@
             </div>
             <div class="price-item-cost">20 <span>ج.م</span></div>
           </div>
+
           <div class="price-item fade-in">
             <span class="price-item-icon">👦</span>
             <div class="price-item-info">
@@ -1200,6 +1444,7 @@
             </div>
             <div class="price-item-cost">50 <span>ج.م</span></div>
           </div>
+
           <div class="price-item fade-in">
             <span class="price-item-icon">🎨</span>
             <div class="price-item-info">
@@ -1210,6 +1455,8 @@
         </div>
       </div>
     </section>
+
+    <!-- العروض -->
     <section id="offers">
       <div class="section fade-in">
         <div class="section-header">
@@ -1218,7 +1465,9 @@
           <p class="section-desc">باقات مميزة بأسعار لا تُعوَّض — احجز الآن</p>
           <div class="divider"></div>
         </div>
+
         <div class="offers-grid">
+          <!-- باقة الأمير -->
           <div class="offer-card fade-in">
             <div class="offer-icon">✨</div>
             <div class="offer-title">باقة الأمير</div>
@@ -1232,6 +1481,8 @@
               <i class="fab fa-whatsapp"></i> احجز الآن
             </a>
           </div>
+
+          <!-- باقة الملك (مميزة) -->
           <div class="offer-card featured fade-in">
             <div class="offer-badge">⭐ الأكثر طلبًا</div>
             <div class="offer-icon">👑</div>
@@ -1246,6 +1497,8 @@
               <i class="fas fa-crown"></i> احجز الآن
             </a>
           </div>
+
+          <!-- باقة الإطلالة الذهبية -->
           <div class="offer-card fade-in">
             <div class="offer-icon">💎</div>
             <div class="offer-title">باقة الإطلالة الذهبية</div>
@@ -1263,6 +1516,8 @@
         </div>
       </div>
     </section>
+
+    <!-- معرض الأعمال -->
     <section id="gallery">
       <div class="section fade-in">
         <div class="section-header">
@@ -1271,6 +1526,7 @@
           <p class="section-desc">صور استعراضية من عالم الحلاقة الرجالية</p>
           <div class="divider"></div>
         </div>
+
         <div class="gallery-grid">
           <div class="gallery-item fade-in">
             <img src="images/client-doing-hair-cut-barber-shop-salon.jpg" alt="صورة استعراضية - حلاقة" loading="lazy" />
@@ -1287,6 +1543,8 @@
         </div>
       </div>
     </section>
+
+    <!-- اتصل بنا -->
     <section id="contact">
       <div class="section fade-in">
         <div class="section-header">
@@ -1295,6 +1553,7 @@
           <p class="section-desc">هنا لخدمتك — احجز أو اتصل في أي وقت</p>
           <div class="divider"></div>
         </div>
+
         <div class="contact-grid">
           <div class="contact-card fade-in">
             <div class="contact-item">
@@ -1336,6 +1595,7 @@
               <i class="fab fa-whatsapp"></i> احجز عبر واتساب
             </a>
           </div>
+
           <div class="map-card fade-in">
             <a href="https://maps.google.com?q=ش+محمود+محروس+متفرع+من+احمد+عرابي+عين+شمس+الشرقيه" target="_blank" rel="noopener" class="map-placeholder">
               <i class="fas fa-map-marked-alt"></i>
@@ -1345,6 +1605,8 @@
         </div>
       </div>
     </section>
+
+    <!-- الفوتر -->
     <footer>
       <div class="footer-inner">
         <div class="footer-logo">ELOSTAZ</div>
@@ -1352,27 +1614,46 @@
         <p class="footer-copy">جميع الحقوق محفوظة &copy; 2026 — صالون الأستاذ &nbsp;|&nbsp; إدارة: Ebrahem Rabea</p>
       </div>
     </footer>
-  </main>
+
+  </main><!-- نهاية الصفحة الرئيسية -->
+
+  <!-- ============================================================
+       صفحة من نحن
+  ============================================================ -->
   <div id="about-page" style="display:none;">
+
+    <!-- ===== Navbar داخل صفحة من نحن ===== -->
+    <!-- نفس الـ navbar الموجود بيظهر تلقائيًا -->
+
+    <!-- ===== Hero صفحة من نحن ===== -->
     <section style="min-height:40svh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:110px 1.5rem 3rem; position:relative;">
       <span class="section-tag" style="margin-bottom:1rem;">About Us</span>
       <h1 style="font-family:'Tajawal',sans-serif; font-size:clamp(2rem,5vw,3rem); font-weight:900; color:var(--gold); margin-bottom:0.5rem;">من نحن</h1>
       <p style="color:var(--text-secondary); font-size:1rem; max-width:500px;">قصة خبرة حقيقية امتدت لأكثر من 30 عامًا في خدمة الأناقة الرجالية</p>
     </section>
+
+    <!-- ===== قصة الصالون ===== -->
     <div style="max-width:1000px; margin:0 auto; padding:0 1.5rem 4rem;">
+
+      <!-- التايملاين -->
       <div style="margin-bottom:3rem;">
         <div class="section-header" style="margin-bottom:2rem;">
           <span class="section-tag">Our Story</span>
           <h2 class="section-title">قصة <span>كوافير الأستاذ</span></h2>
           <div class="divider"></div>
         </div>
+
+        <!-- كارت القصة -->
         <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:20px; padding:2rem 2rem 2rem; position:relative; overflow:hidden;">
           <div style="position:absolute; top:0; right:0; width:6px; bottom:0; background:linear-gradient(180deg,var(--gold),var(--gold-light)); border-radius:0 20px 20px 0;"></div>
 
           <p style="font-size:1.05rem; color:var(--text-secondary); line-height:2; margin-bottom:1.5rem;">
             بدأت قصة <strong style="color:var(--gold)">كوافير الأستاذ</strong> بأكثر من <strong style="color:var(--text-primary)">30 عامًا</strong> من العطاء في مجال الحلاقة الرجالية — موهبة ورثها الأستاذ وصقلها عبر السنين في أعرق المحلات وأفضل البيئات.
           </p>
+
+          <!-- التايملاين الداخلي -->
           <div style="display:flex; flex-direction:column; gap:1.2rem; margin-top:1.5rem;">
+
             <div style="display:flex; gap:1rem; align-items:flex-start;">
               <div style="width:42px; height:42px; border-radius:50%; background:var(--gold-dim); border:2px solid var(--gold); display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--gold); font-size:1rem;">🏥</div>
               <div>
@@ -1380,6 +1661,7 @@
                 <div style="color:var(--text-secondary); font-size:0.88rem; margin-top:0.2rem;">أولى تجاربه الاحترافية في بيئة راقية بمنطقة سانت فاطيمة، حيث شكّل أسلوبه المميز.</div>
               </div>
             </div>
+
             <div style="display:flex; gap:1rem; align-items:flex-start;">
               <div style="width:42px; height:42px; border-radius:50%; background:var(--gold-dim); border:2px solid var(--gold); display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--gold); font-size:1rem;">🌆</div>
               <div>
@@ -1387,6 +1669,7 @@
                 <div style="color:var(--text-secondary); font-size:0.88rem; margin-top:0.2rem;">تجربة ثرية في مصر الجديدة أكسبته خبرة التعامل مع عملاء متنوعين ومتطلبات مختلفة.</div>
               </div>
             </div>
+
             <div style="display:flex; gap:1rem; align-items:flex-start;">
               <div style="width:42px; height:42px; border-radius:50%; background:var(--gold-dim); border:2px solid var(--gold); display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--gold); font-size:1rem;">🏙️</div>
               <div>
@@ -1394,6 +1677,7 @@
                 <div style="color:var(--text-secondary); font-size:0.88rem; margin-top:0.2rem;">عمل في منطقة عماد الدين التاريخية وسط القاهرة، وصقل مهاراته في أحدث صيحات الموضة الرجالية.</div>
               </div>
             </div>
+
             <div style="display:flex; gap:1rem; align-items:flex-start;">
               <div style="width:42px; height:42px; border-radius:50%; background:var(--gold-dim); border:2px solid var(--gold); display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--gold); font-size:1rem;">🤝</div>
               <div>
@@ -1401,6 +1685,7 @@
                 <div style="color:var(--text-secondary); font-size:0.88rem; margin-top:0.2rem;">قدّم خدماته لجهات خاصة واحترافية، مما رفع مستوى أدائه وعزّز سمعته في الوسط.</div>
               </div>
             </div>
+
             <div style="display:flex; gap:1rem; align-items:flex-start;">
               <div style="width:42px; height:42px; border-radius:50%; background:linear-gradient(135deg,var(--gold),var(--gold-light)); border:2px solid var(--gold); display:flex; align-items:center; justify-content:center; flex-shrink:0; color:#1A0D00; font-size:1rem;">📍</div>
               <div>
@@ -1408,9 +1693,12 @@
                 <div style="color:var(--text-secondary); font-size:0.88rem; margin-top:0.2rem;">قرّر الاستقرار في <strong style="color:var(--text-primary)">عين شمس الشرقية</strong> منذ أكثر من 21 عامًا، ليصبح الصالون وجهة ثابتة يثق بها أهل الحي جيلًا بعد جيل.</div>
               </div>
             </div>
-          </div>
-        </div>
+
+          </div><!-- نهاية التايملاين -->
+        </div><!-- نهاية كارت القصة -->
       </div>
+
+      <!-- أرقام مختصرة -->
       <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-bottom:3.5rem;">
         <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:16px; padding:1.5rem 1rem; text-align:center; transition:all var(--transition);">
           <div style="font-family:'Cinzel',serif; font-size:2.2rem; font-weight:900; color:var(--gold);">+30</div>
@@ -1425,23 +1713,35 @@
           <div style="color:var(--text-muted); font-size:0.82rem; margin-top:0.3rem;">خدمة متاحة</div>
         </div>
       </div>
+
+      <!-- =====================================================
+           كلمة المطوّر — على غرار البورتفوليو
+      ====================================================== -->
       <div style="margin-bottom:3rem;">
         <div class="section-header" style="margin-bottom:2rem;">
           <span class="section-tag">Developer</span>
           <h2 class="section-title">كلمة <span>المطوّر</span></h2>
           <div class="divider"></div>
         </div>
-       <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:20px; overflow:hidden; display:grid; grid-template-columns:1fr auto; gap:0; transition:all var(--transition);" class="dev-main-card">
+
+        <!-- الكارت الرئيسي -->
+        <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:20px; overflow:hidden; display:grid; grid-template-columns:1fr auto; gap:0; transition:all var(--transition);" class="dev-main-card">
+
+          <!-- الجزء الأيمن — النص -->
           <div style="padding:2rem 2rem;">
             <p style="color:var(--gold); font-weight:700; font-size:0.9rem; margin-bottom:1rem;">مؤسس المنصة &amp; EdTech Specialist</p>
+
             <p style="color:var(--text-secondary); line-height:1.9; font-size:0.95rem; margin-bottom:1rem;">
               أهلًا بك! أنا <strong style="color:var(--text-primary)">عبد الرحمن إبراهيم</strong>، مطوّر واجهات أمامية متخصص في بناء منصات ويب تعليمية (EdTech).
               شغفي هو تحويل الأفكار التعليمية إلى واقع رقمي سهل الاستخدام وذو كفاءة عالية.
             </p>
+
             <p style="color:var(--text-secondary); line-height:1.9; font-size:0.95rem; margin-bottom:1.5rem;">
               رأيت في <strong style="color:var(--gold)">كوافير الأستاذ</strong> تراثًا حقيقيًا يستحق حضورًا رقميًا يليق به،
               فبنيت هذه المنصة لأمنح الصالون مكانته على الإنترنت — تصميم عصري وسريع يعرض خدماته بوضوح ويسهّل التواصل مع عملائه.
             </p>
+
+            <!-- تشيبس التقنيات -->
             <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1.8rem;">
               <span style="background:var(--gold-dim); border:1px solid var(--border); color:var(--text-primary); padding:0.3rem 0.75rem; border-radius:20px; font-size:0.8rem; font-weight:700;">HTML5 🌐</span>
               <span style="background:var(--gold-dim); border:1px solid var(--border); color:var(--text-primary); padding:0.3rem 0.75rem; border-radius:20px; font-size:0.8rem; font-weight:700;">CSS3 🎨</span>
@@ -1449,10 +1749,14 @@
               <span style="background:var(--gold-dim); border:1px solid var(--border); color:var(--text-primary); padding:0.3rem 0.75rem; border-radius:20px; font-size:0.8rem; font-weight:700;">Firebase 🔥</span>
               <span style="background:var(--gold-dim); border:1px solid var(--border); color:var(--text-primary); padding:0.3rem 0.75rem; border-radius:20px; font-size:0.8rem; font-weight:700;">Responsive Design 📱</span>
             </div>
+
+            <!-- زر البورتفوليو -->
             <a href="https://portfolio-nu-nine-71.vercel.app/" class="btn-primary" target="_blank" rel="noopener" style="display:inline-flex;">
               <i class="fas fa-external-link-alt"></i> زيارة البورتفوليو (My Portfolio)
             </a>
           </div>
+
+          <!-- الجزء الأيسر — كارت الصورة -->
           <div style="background:var(--bg-secondary); border-right:1px solid var(--border); padding:2rem 1.5rem; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.8rem; min-width:200px;" class="dev-photo-col">
             <div style="position:relative;">
               <img src="images/developer.jpg" alt="Abdelrahman Ebrahem"
@@ -1464,6 +1768,7 @@
               <div style="font-weight:900; color:var(--text-primary); font-size:0.95rem;">Abdelrahman Ebrahem</div>
               <div style="background:linear-gradient(135deg,var(--gold),var(--gold-light)); color:#1A0D00; font-size:0.75rem; font-weight:700; padding:0.25rem 0.75rem; border-radius:20px; margin:0.5rem auto; display:inline-block;">Front-End Developer</div>
             </div>
+            <!-- أيقونات السوشيال -->
             <div style="display:flex; gap:0.6rem; margin-top:0.3rem;">
               <a href="https://www.linkedin.com/in/abdelrahmanebrahem/" target="_blank" rel="noopener"
                  style="width:34px;height:34px;border-radius:50%;background:var(--gold-dim);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--gold);text-decoration:none;transition:all var(--transition);"
@@ -1491,21 +1796,30 @@
               </a>
             </div>
           </div>
-        </div>
+
+        </div><!-- نهاية كارت المطوّر -->
       </div>
+
+      <!-- زر العودة -->
       <div style="text-align:center; padding:1rem 0 2rem;">
         <button class="btn-outline" onclick="showMainPage()">
           <i class="fas fa-arrow-right"></i> العودة للصفحة الرئيسية
         </button>
       </div>
-    </div>
+
+    </div><!-- نهاية الكونتينر -->
+
+    <!-- فوتر صفحة من نحن -->
     <footer>
       <div class="footer-inner">
         <div class="footer-logo">ELOSTAZ</div>
         <p class="footer-copy">جميع الحقوق محفوظة &copy; 2026 — صالون الأستاذ &nbsp;|&nbsp; إدارة: إبراهيم ربيع</p>
       </div>
     </footer>
-  </div>
+
+  </div><!-- نهاية صفحة من نحن -->
+
+  <!-- ستايل إضافي لريسبونسف الكارت -->
   <style>
     @media (max-width: 640px) {
       .dev-main-card {
@@ -1517,44 +1831,68 @@
       }
     }
   </style>
+
+  <!-- ============================================================
+       JavaScript
+  ============================================================ -->
   <script>
+    /* ==========================================
+       تبديل الصفحات
+    ========================================== */
     const mainPage  = document.getElementById('main-page');
     const aboutPage = document.getElementById('about-page');
+
     function showMainPage() {
       mainPage.style.display  = '';
       aboutPage.style.display = 'none';
       window.scrollTo({ top: 0, behavior: 'instant' });
     }
+
     function showAboutPage(e) {
       if (e) e.preventDefault();
       mainPage.style.display  = 'none';
       aboutPage.style.display = '';
       window.scrollTo({ top: 0, behavior: 'instant' });
     }
-     const navbar    = document.getElementById('navbar');
+
+    /* ==========================================
+       الـ Navbar — سكرول + هامبرغر
+    ========================================== */
+    const navbar    = document.getElementById('navbar');
     const navLinks  = document.getElementById('nav-links');
     const hamburger = document.getElementById('hamburger');
     const scrollBtn = document.getElementById('scroll-top');
+
     window.addEventListener('scroll', () => {
       navbar.classList.toggle('scrolled', window.scrollY > 30);
       scrollBtn.classList.toggle('visible', window.scrollY > 400);
     });
+
     function toggleMenu() {
       navLinks.classList.toggle('open');
       hamburger.classList.toggle('open');
     }
+
     function closeMenu() {
       navLinks.classList.remove('open');
       hamburger.classList.remove('open');
     }
+
     scrollBtn.addEventListener('click', () =>
       window.scrollTo({ top: 0, behavior: 'smooth' })
     );
+
+    /* ==========================================
+       تبديل الثيم
+    ========================================== */
     const htmlEl      = document.documentElement;
     const themeLabel  = document.getElementById('theme-label');
+
+    // استرجع الثيم المحفوظ
     const savedTheme = localStorage.getItem('elostaz-theme') || 'dark';
     htmlEl.setAttribute('data-theme', savedTheme);
     updateThemeLabel(savedTheme);
+
     function toggleTheme() {
       const current = htmlEl.getAttribute('data-theme');
       const next    = current === 'dark' ? 'light' : 'dark';
@@ -1562,9 +1900,14 @@
       localStorage.setItem('elostaz-theme', next);
       updateThemeLabel(next);
     }
+
     function updateThemeLabel(theme) {
       themeLabel.textContent = theme === 'dark' ? '🌙' : '☀️';
     }
+
+    /* ==========================================
+       Intersection Observer — fade-in
+    ========================================== */
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -1573,10 +1916,16 @@
         }
       });
     }, { threshold: 0.12 });
+
     function initObserver() {
       document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     }
+
     initObserver();
+
+    /* ==========================================
+       سكرول ناعم للروابط الداخلية
+    ========================================== */
     document.querySelectorAll('a[href^="#"]').forEach(link => {
       link.addEventListener('click', e => {
         const href = link.getAttribute('href');
