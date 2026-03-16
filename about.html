@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>من نحن — ELOSTAZ Salon</title>
+  <meta name="description" content="قصة كوافير الأستاذ — أكثر من 30 عامًا في خدمة الأناقة الرجالية بعين شمس الشرقية">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&family=Cinzel:wght@400;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    :root { --transition: 0.35s cubic-bezier(0.4,0,0.2,1); }
+
+    [data-theme="dark"] {
+      --bg-primary:    #080810;
+      --bg-secondary:  #0F0F1C;
+      --bg-card:       #13132A;
+      --bg-card-hover: #1A1A35;
+      --text-primary:  #F0EDE8;
+      --text-secondary:#9A9AA8;
+      --text-muted:    #5A5A70;
+      --gold:          #C8A96E;
+      --gold-light:    #E8C98E;
+      --gold-dim:      rgba(200,169,110,0.15);
+      --border:        rgba(200,169,110,0.18);
+      --border-strong: rgba(200,169,110,0.4);
+      --shadow-gold:   0 0 30px rgba(200,169,110,0.2);
+      --navbar-bg:     rgba(8,8,16,0.88);
+    }
+
+    [data-theme="light"] {
+      --bg-primary:    #F8F4EE;
+      --bg-secondary:  #EEE8DA;
+      --bg-card:       #FFFFFF;
+      --bg-card-hover: #FBF8F3;
+      --text-primary:  #1A1208;
+      --text-secondary:#5A4A30;
+      --text-muted:    #9A8870;
+      --gold:          #8B6914;
+      --gold-light:    #A07820;
+      --gold-dim:      rgba(139,105,20,0.12);
+      --border:        rgba(139,105,20,0.2);
+      --border-strong: rgba(139,105,20,0.45);
+      --shadow-gold:   0 0 25px rgba(139,105,20,0.15);
+      --navbar-bg:     rgba(248,244,238,0.92);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.7;
+      transition: background-color var(--transition), color var(--transition);
+      overflow-x: hidden;
+    }
+
+    /* ===== خلفية كلمة الأستاذ ===== */
+    .bg-ae {
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      font-family: 'Tajawal', sans-serif;
+      font-size: min(17vw,190px);
+      font-weight: 900;
+      color: var(--gold);
+      opacity: 0.04;
+      pointer-events: none;
+      z-index: 0;
+      user-select: none;
+      white-space: nowrap;
+      animation: aePulse 8s ease-in-out infinite;
+    }
+    @keyframes aePulse {
+      0%,100% { opacity: 0.03; }
+      50%      { opacity: 0.05; }
+    }
+
+    /* ===== Navbar ===== */
+    #navbar {
+      position: fixed; top: 0; right: 0; left: 0; z-index: 1000;
+      background: var(--navbar-bg);
+      backdrop-filter: blur(18px) saturate(1.5);
+      -webkit-backdrop-filter: blur(18px) saturate(1.5);
+      border-bottom: 1px solid var(--border);
+      transition: background var(--transition), box-shadow var(--transition);
+    }
+    #navbar.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.35); }
+
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto; padding: 0 1.5rem;
+      height: 65px; display: flex; align-items: center;
+      justify-content: space-between; gap: 1rem;
+    }
+
+    .nav-brand {
+      display: flex; align-items: center; gap: 0.7rem; text-decoration: none;
+    }
+    .nav-logo-img {
+      width: 42px; height: 42px; border-radius: 50%;
+      object-fit: contain; border: 2px solid var(--gold);
+      background: #fff; padding: 3px;
+    }
+    .nav-brand-text {
+      font-family: 'Cinzel', serif; font-size: 1.05rem;
+      font-weight: 700; color: var(--gold); letter-spacing: 0.05em; line-height: 1.2;
+    }
+    .nav-brand-sub {
+      font-family: 'Tajawal', sans-serif; font-size: 0.7rem;
+      color: var(--text-muted); display: block; font-weight: 400;
+    }
+
+    .nav-controls { display: flex; align-items: center; gap: 0.6rem; }
+
+    #theme-toggle {
+      width: 46px; height: 26px; border-radius: 13px;
+      background: var(--border-strong); border: none; cursor: pointer;
+      position: relative; transition: background var(--transition);
+    }
+    #theme-toggle::before {
+      content: ''; position: absolute; top: 3px; right: 3px;
+      width: 20px; height: 20px; border-radius: 50%;
+      background: var(--gold); transition: transform var(--transition);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+    [data-theme="light"] #theme-toggle::before { transform: translateX(-20px); }
+
+    .theme-label { font-size: 0.75rem; color: var(--text-muted); cursor: pointer; }
+
+    .btn-back {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--gold-dim); color: var(--gold);
+      border: 1px solid var(--border-strong); border-radius: 25px;
+      padding: 0.4rem 1rem; font-size: 0.88rem; font-weight: 700;
+      font-family: 'Tajawal', sans-serif; cursor: pointer;
+      text-decoration: none; transition: all var(--transition);
+    }
+    .btn-back:hover { background: var(--gold); color: #1A0D00; }
+
+    /* ===== مشتركات ===== */
+    .section-tag {
+      display: inline-block; font-size: 0.75rem; font-weight: 700;
+      color: var(--gold); letter-spacing: 0.18em; text-transform: uppercase;
+      background: var(--gold-dim); border: 1px solid var(--border);
+      padding: 0.3rem 0.9rem; border-radius: 25px; margin-bottom: 0.8rem;
+    }
+    .section-title {
+      font-size: clamp(1.5rem,4vw,2.2rem); font-weight: 900;
+      color: var(--text-primary); margin-bottom: 0.5rem;
+    }
+    .section-title span { color: var(--gold); }
+    .divider {
+      width: 60px; height: 3px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      border-radius: 3px; margin: 0.8rem auto 0;
+    }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: #1A0D00; font-family: 'Tajawal', sans-serif;
+      font-weight: 700; font-size: 0.95rem; padding: 0.75rem 1.8rem;
+      border-radius: 35px; border: none; cursor: pointer;
+      text-decoration: none; transition: all var(--transition);
+      box-shadow: 0 4px 20px rgba(200,169,110,0.3);
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(200,169,110,0.5); }
+
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: transparent; color: var(--gold);
+      font-family: 'Tajawal', sans-serif; font-weight: 700;
+      font-size: 0.95rem; padding: 0.73rem 1.8rem;
+      border-radius: 35px; border: 2px solid var(--gold);
+      cursor: pointer; text-decoration: none;
+      transition: all var(--transition);
+    }
+    .btn-outline:hover { background: var(--gold-dim); transform: translateY(-3px); }
+
+    /* ===== fade-in ===== */
+    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* ===== scroll top ===== */
+    #scroll-top {
+      position: fixed; bottom: 2rem; left: 1.5rem;
+      width: 45px; height: 45px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: #1A0D00; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; box-shadow: 0 4px 20px rgba(200,169,110,0.4);
+      opacity: 0; transform: translateY(20px);
+      transition: all var(--transition); z-index: 999;
+    }
+    #scroll-top.visible { opacity: 1; transform: translateY(0); }
+
+    /* ===== footer ===== */
+    footer {
+      background: var(--bg-secondary); border-top: 1px solid var(--border);
+      padding: 2rem 1.5rem; text-align: center;
+    }
+    .footer-logo {
+      font-family: 'Cinzel', serif; font-size: 1.4rem;
+      font-weight: 900; color: var(--gold); margin-bottom: 0.4rem;
+    }
+    .footer-copy { color: var(--text-muted); font-size: 0.82rem; }
+
+    /* ===== ريسبونسف كارت المطوّر ===== */
+    .dev-main-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 20px; overflow: hidden;
+      display: grid; grid-template-columns: 1fr auto;
+      transition: all var(--transition);
+    }
+    @media (max-width: 640px) {
+      .dev-main-card { grid-template-columns: 1fr !important; }
+      .dev-photo-col {
+        border-right: none !important;
+        border-top: 1px solid var(--border) !important;
+      }
+    }
+    @media (max-width: 480px) {
+      .stats-row { grid-template-columns: 1fr !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-ae" aria-hidden="true">الأستاذ</div>
+
+  <button id="scroll-top" aria-label="العودة للأعلى">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- ===== Navbar ===== -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">
+        <img src="images/ELOSTAZ Logo1.png" alt="شعار كوافير الأستاذ" class="nav-logo-img" />
+        <div class="nav-brand-text">
+          ELOSTAZ
+          <span class="nav-brand-sub">كوافير الأستاذ</span>
+        </div>
+      </a>
+
+      <div class="nav-controls">
+        <a href="index.html" class="btn-back">
+          <i class="fas fa-arrow-right"></i> الصفحة الرئيسية
+        </a>
+        <span class="theme-label" id="theme-label">🌙</span>
+        <button id="theme-toggle" aria-label="تبديل الثيم" onclick="toggleTheme()"></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== محتوى الصفحة ===== -->
+  <main style="position:relative; z-index:1;">
+
+    <!-- Hero -->
+    <section style="min-height:40svh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:110px 1.5rem 3rem;">
+      <span class="section-tag" style="margin-bottom:1rem;">About Us</span>
+      <h1 style="font-size:clamp(2rem,5vw,3rem); font-weight:900; color:var(--gold); margin-bottom:0.5rem;">من نحن</h1>
+      <p style="color:var(--text-secondary); font-size:1rem; max-width:500px;">
+        قصة خبرة حقيقية امتدت لأكثر من 30 عامًا في خدمة الأناقة الرجالية
+      </p>
+    </section>
+
+    <div style="max-width:1000px; margin:0 auto; padding:0 1.5rem 4rem;">
+
+      <!-- ===== قصة الصالون ===== -->
+      <div class="fade-in" style="margin-bottom:3.5rem;">
+        <div style="text-align:center; margin-bottom:2rem;">
+          <span class="section-tag">Our Story</span>
+          <h2 class="section-title">قصة <span>كوافير الأستاذ</span></h2>
+          <div class="divider"></div>
+        </div>
+
+        <!-- كارت القصة -->
+        <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:20px; padding:2rem; position:relative; overflow:hidden;">
+          <!-- خط أيمن ذهبي -->
+          <div style="position:absolute; top:0; right:0; width:5px; bottom:0; background:linear-gradient(180deg,var(--gold),var(--gold-light));"></div>
+
+          <p style="font-size:1.05rem; color:var(--text-secondary); line-height:2; margin-bottom:2rem; padding-right:0.5rem;">
+            بدأت قصة <strong style="color:var(--gold)">كوافير الأستاذ</strong> بأكثر من
+            <strong style="color:var(--text-primary)">30 عامًا</strong> من العطاء في مجال الحلاقة الرجالية —
+            موهبة ورثها الأستاذ وصقلها عبر السنين في أعرق المحلات وأفضل البيئات، حتى استقر في
+            <strong style="color:var(--gold)">عين شمس الشرقية</strong> ليصبح وجهة ثابتة يثق بها أهل الحي جيلًا بعد جيل.
+          </p>
+
+          <!-- التايملاين -->
+          <div style="display:flex; flex-direction:column; gap:1.3rem;">
+
+            <div style="display:flex; gap:1rem; align-items:flex-start;">
+              <div style="width:44px; height:44px; border-radius:50%; background:var(--gold-dim); border:2px solid var(--border); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:1.1rem;">🏥</div>
+              <div style="padding-top:0.2rem;">
+                <div style="font-weight:700; color:var(--text-primary); font-size:0.97rem; margin-bottom:0.25rem;">سانت فاطيمة</div>
+                <div style="color:var(--text-secondary); font-size:0.88rem; line-height:1.7;">
+                  أولى تجاربه الاحترافية في بيئة راقية بمنطقة سانت فاطيمة، حيث شكّل أسلوبه المميز وراكم أساس خبرته.
+                </div>
+              </div>
+            </div>
+
+            <div style="width:2px; height:20px; background:var(--border); margin-right:21px; border-radius:2px;"></div>
+
+            <div style="display:flex; gap:1rem; align-items:flex-start;">
+              <div style="width:44px; height:44px; border-radius:50%; background:var(--gold-dim); border:2px solid var(--border); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:1.1rem;">🌆</div>
+              <div style="padding-top:0.2rem;">
+                <div style="font-weight:700; color:var(--text-primary); font-size:0.97rem; margin-bottom:0.25rem;">مصر الجديدة</div>
+                <div style="color:var(--text-secondary); font-size:0.88rem; line-height:1.7;">
+                  تجربة ثرية في مصر الجديدة أكسبته خبرة التعامل مع عملاء متنوعين ومتطلبات مختلفة في قلب القاهرة.
+                </div>
+              </div>
+            </div>
+
+            <div style="width:2px; height:20px; background:var(--border); margin-right:21px; border-radius:2px;"></div>
+
+            <div style="display:flex; gap:1rem; align-items:flex-start;">
+              <div style="width:44px; height:44px; border-radius:50%; background:var(--gold-dim); border:2px solid var(--border); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:1.1rem;">🏙️</div>
+              <div style="padding-top:0.2rem;">
+                <div style="font-weight:700; color:var(--text-primary); font-size:0.97rem; margin-bottom:0.25rem;">عماد الدين</div>
+                <div style="color:var(--text-secondary); font-size:0.88rem; line-height:1.7;">
+                  عمل في منطقة عماد الدين التاريخية وسط القاهرة، وصقل مهاراته في أحدث صيحات الموضة الرجالية الكلاسيكية والعصرية.
+                </div>
+              </div>
+            </div>
+
+            <div style="width:2px; height:20px; background:var(--border); margin-right:21px; border-radius:2px;"></div>
+
+            <div style="display:flex; gap:1rem; align-items:flex-start;">
+              <div style="width:44px; height:44px; border-radius:50%; background:var(--gold-dim); border:2px solid var(--border); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:1.1rem;">🤝</div>
+              <div style="padding-top:0.2rem;">
+                <div style="font-weight:700; color:var(--text-primary); font-size:0.97rem; margin-bottom:0.25rem;">جهات خاصة مميزة</div>
+                <div style="color:var(--text-secondary); font-size:0.88rem; line-height:1.7;">
+                  قدّم خدماته لجهات خاصة واحترافية، مما رفع مستوى أدائه وعزّز سمعته في الوسط المهني.
+                </div>
+              </div>
+            </div>
+
+            <div style="width:2px; height:20px; background:var(--border); margin-right:21px; border-radius:2px;"></div>
+
+            <div style="display:flex; gap:1rem; align-items:flex-start;">
+              <div style="width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg,var(--gold),var(--gold-light)); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:1.1rem; box-shadow:var(--shadow-gold);">📍</div>
+              <div style="padding-top:0.2rem;">
+                <div style="font-weight:700; color:var(--gold); font-size:0.97rem; margin-bottom:0.25rem;">عين شمس الشرقية — المنزل الدائم · أكثر من 21 عامًا</div>
+                <div style="color:var(--text-secondary); font-size:0.88rem; line-height:1.7;">
+                  قرّر الاستقرار في <strong style="color:var(--text-primary)">عين شمس الشرقية</strong> منذ أكثر من 21 عامًا،
+                  ليصبح الصالون وجهة ثابتة ومحبوبة يثق بها أهل الحي جيلًا بعد جيل.
+                </div>
+              </div>
+            </div>
+
+          </div><!-- نهاية التايملاين -->
+        </div>
+      </div>
+
+      <!-- ===== أرقام مختصرة ===== -->
+      <div class="fade-in stats-row" style="display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-bottom:3.5rem;">
+        <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:16px; padding:1.5rem 1rem; text-align:center;">
+          <div style="font-family:'Cinzel',serif; font-size:2.2rem; font-weight:900; color:var(--gold);">+30</div>
+          <div style="color:var(--text-muted); font-size:0.82rem; margin-top:0.3rem;">عامًا من الخبرة</div>
+        </div>
+        <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:16px; padding:1.5rem 1rem; text-align:center;">
+          <div style="font-family:'Cinzel',serif; font-size:2.2rem; font-weight:900; color:var(--gold);">+21</div>
+          <div style="color:var(--text-muted); font-size:0.82rem; margin-top:0.3rem;">عامًا في عين شمس</div>
+        </div>
+        <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:16px; padding:1.5rem 1rem; text-align:center;">
+          <div style="font-family:'Cinzel',serif; font-size:2.2rem; font-weight:900; color:var(--gold);">10+</div>
+          <div style="color:var(--text-muted); font-size:0.82rem; margin-top:0.3rem;">خدمة متاحة</div>
+        </div>
+      </div>
+
+      <!-- ===== كلمة المطوّر ===== -->
+      <div class="fade-in" style="margin-bottom:2.5rem;">
+        <div style="text-align:center; margin-bottom:2rem;">
+          <span class="section-tag">Developer</span>
+          <h2 class="section-title">كلمة <span>المطوّر</span></h2>
+          <div class="divider"></div>
+        </div>
+
+        <!-- كارت المطوّر -->
+        <div class="dev-main-card">
+
+          <!-- الجزء الأيمن — النص -->
+          <div style="padding:2rem;">
+            <p style="color:var(--gold); font-weight:700; font-size:0.9rem; margin-bottom:1rem;">مؤسس المنصة &amp; EdTech Specialist</p>
+
+            <p style="color:var(--text-secondary); line-height:1.9; font-size:0.95rem; margin-bottom:1rem;">
+              أهلًا بك! أنا <strong style="color:var(--text-primary)">عبد الرحمن إبراهيم</strong>، مطوّر واجهات أمامية متخصص في بناء منصات ويب تعليمية (EdTech).
+              شغفي هو تحويل الأفكار التعليمية إلى واقع رقمي سهل الاستخدام وذو كفاءة عالية.
+            </p>
+
+            <p style="color:var(--text-secondary); line-height:1.9; font-size:0.95rem; margin-bottom:1.5rem;">
+              رأيت في <strong style="color:var(--gold)">كوافير الأستاذ</strong> تراثًا حقيقيًا يستحق حضورًا رقميًا يليق به،
+              فبنيت هذه المنصة لأمنح الصالون مكانته على الإنترنت — تصميم عصري وسريع يعرض خدماته بوضوح ويسهّل التواصل مع عملائه.
+            </p>
+
+            <!-- تشيبس التقنيات -->
+            <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1.8rem;">
+              <span style="background:var(--gold-dim); border:1px solid var(--border); color:var(--text-primary); padding:0.3rem 0.75rem; border-radius:20px; font-size:0.8rem; font-weight:700;">HTML5 🌐</span>
+              <span style="background:var(--gold-dim); border:1px solid var(--border); color:var(--text-primary); padding:0.3rem 0.75rem; border-radius:20px; font-size:0.8rem; font-weight:700;">CSS3 (High Performance) 🎨</span>
+              <span style="background:var(--gold-dim); border:1px solid var(--border); color:var(--text-primary); padding:0.3rem 0.75rem; border-radius:20px; font-size:0.8rem; font-weight:700;">JavaScript (ES6+) ⚡</span>
+              <span style="background:var(--gold-dim); border:1px solid var(--border); color:var(--text-primary); padding:0.3rem 0.75rem; border-radius:20px; font-size:0.8rem; font-weight:700;">Firebase (Auth &amp; DB) 🔥</span>
+              <span style="background:var(--gold-dim); border:1px solid var(--border); color:var(--text-primary); padding:0.3rem 0.75rem; border-radius:20px; font-size:0.8rem; font-weight:700;">Firestore 🗄️</span>
+            </div>
+
+            <a href="https://portfolio-nu-nine-71.vercel.app/" class="btn-primary" target="_blank" rel="noopener">
+              <i class="fas fa-external-link-alt"></i> زيارة البورتفوليو (My Portfolio)
+            </a>
+          </div>
+
+          <!-- الجزء الأيسر — صورة + بيانات -->
+          <div class="dev-photo-col" style="background:var(--bg-secondary); border-right:1px solid var(--border); padding:2rem 1.5rem; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.8rem; min-width:200px;">
+            <div style="position:relative;">
+              <img src="images/developer.png" alt="Abdelrahman Ebrahem"
+                   style="width:110px; height:110px; border-radius:50%; object-fit:cover; border:3px solid var(--gold); box-shadow:0 0 0 6px var(--gold-dim);"
+                   onerror="this.style.display='none'; document.getElementById('dev-fallback').style.display='flex';" />
+              <div id="dev-fallback" style="display:none; width:110px; height:110px; border-radius:50%; background:var(--bg-card); border:3px solid var(--gold); box-shadow:0 0 0 6px var(--gold-dim); align-items:center; justify-content:center; font-family:'Cinzel',serif; font-size:2rem; color:var(--gold); font-weight:900;">Æ</div>
+            </div>
+
+            <div style="text-align:center;">
+              <div style="font-weight:900; color:var(--text-primary); font-size:0.95rem; margin-bottom:0.4rem;">Abdelrahman Ebrahem</div>
+              <div style="background:linear-gradient(135deg,var(--gold),var(--gold-light)); color:#1A0D00; font-size:0.75rem; font-weight:700; padding:0.25rem 0.75rem; border-radius:20px; display:inline-block;">Front-End Developer</div>
+            </div>
+
+            <!-- أيقونات سوشيال -->
+            <div style="display:flex; gap:0.55rem; margin-top:0.4rem;">
+              <a href="https://www.linkedin.com/in/abdelrahmanebrahem/" target="_blank" rel="noopener"
+                 title="LinkedIn"
+                 style="width:34px;height:34px;border-radius:50%;background:var(--gold-dim);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--gold);text-decoration:none;transition:all 0.25s;">
+                <i class="fab fa-linkedin-in" style="font-size:0.85rem;"></i>
+              </a>
+              <a href="https://wa.me/201551706847" target="_blank" rel="noopener"
+                 title="WhatsApp"
+                 style="width:34px;height:34px;border-radius:50%;background:var(--gold-dim);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--gold);text-decoration:none;transition:all 0.25s;">
+                <i class="fab fa-whatsapp" style="font-size:0.85rem;"></i>
+              </a>
+              <a href="https://www.instagram.com/abdelrahmanebrahem_/" target="_blank" rel="noopener"
+                 title="Instagram"
+                 style="width:34px;height:34px;border-radius:50%;background:var(--gold-dim);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--gold);text-decoration:none;transition:all 0.25s;">
+                <i class="fab fa-instagram" style="font-size:0.85rem;"></i>
+              </a>
+              <a href="https://www.facebook.com/AbdelrahmanEbrahem.dev/" target="_blank" rel="noopener"
+                 title="Facebook"
+                 style="width:34px;height:34px;border-radius:50%;background:var(--gold-dim);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--gold);text-decoration:none;transition:all 0.25s;">
+                <i class="fab fa-facebook-f" style="font-size:0.85rem;"></i>
+              </a>
+            </div>
+          </div>
+
+        </div><!-- نهاية كارت المطوّر -->
+      </div>
+
+      <!-- زر العودة -->
+      <div style="text-align:center; padding:1rem 0 1rem;">
+        <a href="index.html" class="btn-outline">
+          <i class="fas fa-arrow-right"></i> العودة للصفحة الرئيسية
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div style="max-width:1100px; margin:0 auto;">
+      <div class="footer-logo">ELOSTAZ</div>
+      <p class="footer-copy" style="margin-top:0.4rem;">جميع الحقوق محفوظة &copy; 2026 — صالون الأستاذ &nbsp;|&nbsp; إدارة: Ebrahem Rabea</p>
+    </div>
+  </footer>
+
+  <script>
+    /* ثيم */
+    const htmlEl     = document.documentElement;
+    const themeLabel = document.getElementById('theme-label');
+    const savedTheme = localStorage.getItem('elostaz-theme') || 'dark';
+    htmlEl.setAttribute('data-theme', savedTheme);
+    themeLabel.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
+
+    function toggleTheme() {
+      const next = htmlEl.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      htmlEl.setAttribute('data-theme', next);
+      localStorage.setItem('elostaz-theme', next);
+      themeLabel.textContent = next === 'dark' ? '🌙' : '☀️';
+    }
+
+    /* ناف سكرول */
+    const navbar    = document.getElementById('navbar');
+    const scrollBtn = document.getElementById('scroll-top');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 30);
+      scrollBtn.classList.toggle('visible', window.scrollY > 400);
+    });
+    scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    /* fade-in */
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
